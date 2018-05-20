@@ -39,7 +39,8 @@ def train(mnist):
 
 
     saver = tf.train.Saver()
-    with tf.Session() as sess:
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.666)
+    with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
         tf.global_variables_initializer().run()
 
         for i in range(TRAINING_STEPS):
